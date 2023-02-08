@@ -1,8 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import AboutPage from "./pages/About";
 import reportWebVitals from "./reportWebVitals";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { WagmiConfig, createClient, chain } from "wagmi";
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
 
@@ -31,9 +33,7 @@ const darkTheme = createTheme({
     primary: blue,
   },
   typography: {
-    fontFamily: [
-      "roboto"
-    ].join(","),
+    fontFamily: ["roboto"].join(","),
   },
 });
 
@@ -42,16 +42,21 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={darkTheme}>
-      <SnackbarProvider>
-        <WagmiConfig client={client}>
-          <ConnectKitProvider theme="auto">
-            <CssBaseline />
-            <App />
-          </ConnectKitProvider>
-        </WagmiConfig>
-      </SnackbarProvider>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={darkTheme}>
+        <SnackbarProvider>
+          <WagmiConfig client={client}>
+            <ConnectKitProvider theme="auto">
+              <CssBaseline />
+              <Routes>
+                <Route path="/" element={<App />} />
+                <Route path="/about" element={<AboutPage />} />
+              </Routes>
+            </ConnectKitProvider>
+          </WagmiConfig>
+        </SnackbarProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

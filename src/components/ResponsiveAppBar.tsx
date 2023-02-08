@@ -13,6 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import ElderlyIcon from "@mui/icons-material/Elderly";
 
 import { ConnectKitButton } from "connectkit";
+import { Link } from "react-router-dom";
 
 const pages = ["About"];
 
@@ -23,11 +24,9 @@ function ResponsiveAppBar() {
     setAnchorElNav(event.currentTarget);
   };
 
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
 
   return (
     <AppBar position="static">
@@ -82,9 +81,14 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+                <Link
+                  to={`/${page.toLowerCase()}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
@@ -109,13 +113,18 @@ function ResponsiveAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+              <Link
+                to={`/${page.toLowerCase()}`}
+                style={{ textDecoration: "none", color: "inherit" }}
               >
-                {page}
-              </Button>
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {page}
+                </Button>
+              </Link>
             ))}
           </Box>
 
