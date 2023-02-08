@@ -9,7 +9,7 @@ import { ConnectKitProvider, getDefaultClient } from "connectkit";
 import { SnackbarProvider } from "notistack";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { yellow } from "@mui/material/colors";
+import { blue } from "@mui/material/colors";
 
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
@@ -28,24 +28,11 @@ const client = createClient(
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
-    primary: yellow,
+    primary: blue,
   },
   typography: {
     fontFamily: [
-      "-apple-system,BlinkMacSystemFont",
-      "Segoe UI",
-      "Helvetica",
-      "Apple Color Emoji",
-      "Arial",
-      "sans-serif",
-      "Segoe UI Emoji",
-      "Segoe UI Symbol",
-      // "source-code-pro",
-      // "Menlo",
-      // "Monaco",
-      // "Consolas",
-      // '"Courier New"',
-      // "Monospace",
+      "roboto"
     ].join(","),
   },
 });
