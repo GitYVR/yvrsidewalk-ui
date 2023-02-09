@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import AboutPage from "./pages/About";
+import HistoryPage from "./pages/History";
 import reportWebVitals from "./reportWebVitals";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -51,6 +52,7 @@ root.render(
               <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/about" element={<AboutPage />} />
+                <Route path="/history" element={<HistoryPage />} />
               </Routes>
             </ConnectKitProvider>
           </WagmiConfig>

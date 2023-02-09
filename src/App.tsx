@@ -18,9 +18,7 @@ import { FixedSizeList } from "react-window";
 import { useModal } from "connectkit";
 import { parseUnits } from "@ethersproject/units";
 import { ethers } from "ethers";
-
-// Where funds should go
-const RECIPIENT_ADDRESS = "0x0a5C4879E9729bE630448dA7F31C5c4540121565";
+import { RECIPIENT_ADDRESS } from "./common/constants";
 
 function App() {
   const { data: signer } = useSigner();
@@ -34,11 +32,8 @@ function App() {
 
   const retrieveQueue = useCallback(async () => {
     const resp = await fetch("https://yetanothersslproxy.com/queue", {
-      method: 'GET',
-
-    }).then((x) =>
-      x.json()
-    );
+      method: "GET",
+    }).then((x) => x.json());
     setQueue(resp.queue);
   }, []);
 

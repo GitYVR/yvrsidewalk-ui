@@ -15,7 +15,7 @@ import ElderlyIcon from "@mui/icons-material/Elderly";
 import { ConnectKitButton } from "connectkit";
 import { Link } from "react-router-dom";
 
-const pages = ["About"];
+const pages = ["History", "About"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -109,7 +109,9 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
-            YVRSW
+            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+              YVRSW
+            </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
