@@ -148,7 +148,7 @@ function App() {
                     disablePadding
                   >
                     <ListItemButton>
-                      <ListItemText primary={`${queue[index]}`} />
+                      <ListItemText primary={`${index}: ${queue[index]}`} />
                     </ListItemButton>
                   </ListItem>
                 )}
