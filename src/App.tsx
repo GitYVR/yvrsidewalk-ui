@@ -20,7 +20,7 @@ import { parseUnits } from "@ethersproject/units";
 import { ethers } from "ethers";
 
 // Where funds should go
-const RECIPIENT_ADDRESS = "0x9c327C46351a09abbBF440E1E756A3bea9fEc11c";
+const RECIPIENT_ADDRESS = "0x0a5C4879E9729bE630448dA7F31C5c4540121565";
 
 function App() {
   const { data: signer } = useSigner();
