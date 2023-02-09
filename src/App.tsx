@@ -33,11 +33,13 @@ function App() {
   const [paying, setPaying] = useState(false);
 
   const retrieveQueue = useCallback(async () => {
-    const resp = await fetch("http://dctrl.asuscomm.com:4000/queue").then((x) =>
+    const resp = await fetch("https://yetanothersslproxy.com/queue", {
+      method: 'GET',
+
+    }).then((x) =>
       x.json()
     );
-    const { queue } = resp;
-    setQueue(queue);
+    setQueue(resp.queue);
   }, []);
 
   useEffect(() => {
