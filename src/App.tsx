@@ -71,7 +71,7 @@ function App() {
 
       <Box>
         <ReactPlayer
-          url={"https://www.youtube.com/watch?v=Dx_7dDzsxsc"}
+          url={"https://www.youtube.com/watch?v=bX6_zM0uZoM"}
           playing={true}
           width="100%"
         />
