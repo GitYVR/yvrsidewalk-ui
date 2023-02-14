@@ -71,7 +71,7 @@ function App() {
 
       <Box>
         <ReactPlayer
-          url={"https://player.twitch.tv/?channel=yvrsidewalk&parent=www.example.com"}
+          url={"https://player.twitch.tv/?channel=yvrsidewalk&parent=streamernews.example.com"}
           playing={true}
           width="100%"
         />
