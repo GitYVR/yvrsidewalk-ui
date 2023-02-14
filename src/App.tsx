@@ -70,7 +70,7 @@ function App() {
     <>
       <ResponsiveAppBar />
 
-      <Box>
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {/* For Youtube */}
         {/* <ReactPlayer
           url={"https://player.twitch.tv/?channel=yvrsidewalk&parent=streamernews.example.com"}
