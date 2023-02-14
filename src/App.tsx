@@ -71,7 +71,7 @@ function App() {
 
       <Box>
         <ReactPlayer
-          url={"https://www.youtube.com/watch?v=bX6_zM0uZoM"}
+          url={"https://player.twitch.tv/?channel=yvrsidewalk"}
           playing={true}
           width="100%"
         />
