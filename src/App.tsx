@@ -11,13 +11,14 @@ import {
 } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { useSigner } from "wagmi";
-import ReactPlayer from "react-player";
+// import ReactPlayer from "react-player";
 import { useCallback, useEffect, useState } from "react";
 import ResponsiveAppBar from "./components/ResponsiveAppBar";
 import { FixedSizeList } from "react-window";
 import { useModal } from "connectkit";
 import { parseUnits } from "@ethersproject/units";
 import { ethers } from "ethers";
+import { TwitchPlayer } from "react-twitch-embed";
 import { RECIPIENT_ADDRESS } from "./common/constants";
 
 function App() {
@@ -70,10 +71,16 @@ function App() {
       <ResponsiveAppBar />
 
       <Box>
-        <ReactPlayer
+        {/* For Youtube */}
+        {/* <ReactPlayer
           url={"https://player.twitch.tv/?channel=yvrsidewalk&parent=streamernews.example.com"}
           playing={true}
           width="100%"
+        /> */}
+        <TwitchPlayer
+          channel="yvrsidewalk"
+          parent="streamernews.example.com"
+          autoplay={true}
         />
       </Box>
 
