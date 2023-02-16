@@ -115,7 +115,7 @@ function App() {
           >
             {paying
               ? "Changing text..."
-              : "Change sidewalk text (Cost: 1 MATIC)"}
+              : "Change sidewalk text (Donate: 1 MATIC)"}
           </Button>
 
           <Alert severity="info">Livestream lags by ~30 seconds</Alert>
