@@ -32,7 +32,7 @@ function App() {
   const [paying, setPaying] = useState(false);
 
   const retrieveQueue = useCallback(async () => {
-    const resp = await fetch("https://yetanothersslproxy.com/queue", {
+    const resp = await fetch("https://sidewalk.dctrl.wtf/queue", {
       method: "GET",
     }).then((x) => x.json());
     setQueue(resp.queue);
