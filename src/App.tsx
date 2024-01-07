@@ -108,7 +108,7 @@ function App() {
               }
               changeSidewalkText();
             }}
-            disabled={paying}
+            disabled={paying || sidewalkText === ''}
             style={{ marginTop: "10px" }}
             fullWidth
             variant="contained"
