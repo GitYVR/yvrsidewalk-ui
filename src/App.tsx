@@ -8,18 +8,18 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-} from "@mui/material";
-import { useSnackbar } from "notistack";
-import { useSigner } from "wagmi";
+} from '@mui/material';
+import { useSnackbar } from 'notistack';
+import { useSigner } from 'wagmi';
 // import ReactPlayer from "react-player";
-import { useCallback, useEffect, useState } from "react";
-import ResponsiveAppBar from "./components/ResponsiveAppBar";
-import { FixedSizeList } from "react-window";
-import { useModal } from "connectkit";
-import { parseUnits } from "@ethersproject/units";
-import { ethers } from "ethers";
-import { TwitchPlayer } from "react-twitch-embed";
-import { RECIPIENT_ADDRESS } from "./common/constants";
+import { useCallback, useEffect, useState } from 'react';
+import ResponsiveAppBar from './components/ResponsiveAppBar';
+import { FixedSizeList } from 'react-window';
+import { useModal } from 'connectkit';
+import { parseUnits } from '@ethersproject/units';
+import { ethers } from 'ethers';
+import { TwitchPlayer } from 'react-twitch-embed';
+import { RECIPIENT_ADDRESS } from './common/constants';
 
 function App() {
   const { data: signer } = useSigner();
@@ -28,13 +28,17 @@ function App() {
 
   const [queueInit, setQueueInit] = useState(false);
   const [queue, setQueue] = useState([]);
-  const [sidewalkText, setSidewalkText] = useState("");
+  const [sidewalkText, setSidewalkText] = useState('');
   const [paying, setPaying] = useState(false);
 
   const retrieveQueue = useCallback(async () => {
-    const resp = await fetch("https://api-sidewalk.dctrl.wtf/queue", {
-      method: "GET",
-    }).then((x) => x.json());
+    // const resp = await fetch("https://api-sidewalk.dctrl.wtf/queue", {
+    const resp = await fetch(
+      'https://d132-198-217-119-118.ngrok-free.app/queue',
+      {
+        method: 'GET',
+      },
+    ).then((x) => x.json());
     setQueue(resp.queue);
   }, []);
 
@@ -51,17 +55,17 @@ function App() {
     if (signer === undefined || signer === null) return;
 
     setPaying(true);
-    enqueueSnackbar("Queuing sidewalk text", { variant: "info" });
+    enqueueSnackbar('Queuing sidewalk text', { variant: 'info' });
     try {
       const tx = await signer.sendTransaction({
         to: RECIPIENT_ADDRESS,
-        value: parseUnits("1"),
+        value: parseUnits('1'),
         data: ethers.utils.hexlify(ethers.utils.toUtf8Bytes(sidewalkText)),
       });
       await tx.wait();
-      enqueueSnackbar("Sidewalk text queued", { variant: "success" });
+      enqueueSnackbar('Sidewalk text queued', { variant: 'success' });
     } catch (e) {
-      enqueueSnackbar("Failed to queue", { variant: "error" });
+      enqueueSnackbar('Failed to queue', { variant: 'error' });
     }
     setPaying(false);
   }, [signer, sidewalkText, enqueueSnackbar]);
@@ -70,7 +74,9 @@ function App() {
     <>
       <ResponsiveAppBar />
 
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Box
+        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
         {/* For Youtube */}
         {/* <ReactPlayer
           url={"https://player.twitch.tv/?channel=yvrsidewalk&parent=streamernews.example.com"}
@@ -91,7 +97,7 @@ function App() {
             onChange={(e) => {
               // Alphabets and spaces only
               setSidewalkText(
-                e.target.value.replace(/[^a-zA-Z ]/g, "").slice(0, 64)
+                e.target.value.replace(/[^a-zA-Z ]/g, '').slice(0, 64),
               );
             }}
             value={sidewalkText}
@@ -101,7 +107,7 @@ function App() {
           />
           <Button
             onClick={() => {
-              console.log("signer", signer);
+              console.log('signer', signer);
               if (signer === undefined || signer === null) {
                 setOpen(true);
                 return;
@@ -109,13 +115,13 @@ function App() {
               changeSidewalkText();
             }}
             disabled={paying || sidewalkText === ''}
-            style={{ marginTop: "10px" }}
+            style={{ marginTop: '10px' }}
             fullWidth
             variant="contained"
           >
             {paying
-              ? "Changing text..."
-              : "Change sidewalk text (Donate: 1 MATIC)"}
+              ? 'Changing text...'
+              : 'Change sidewalk text (Donate: 1 MATIC)'}
           </Button>
 
           <Alert severity="info">Livestream lags by ~30 seconds</Alert>
@@ -129,15 +135,15 @@ function App() {
           <Typography variant="h5">In Queue</Typography>
           <Box
             sx={{
-              width: "100%",
+              width: '100%',
               height: 400,
-              bgcolor: "background.paper",
+              bgcolor: 'background.paper',
             }}
           >
             {queue.length > 0 ? (
               <FixedSizeList
                 height={250}
-                width={"100%"}
+                width={'100%'}
                 itemSize={32}
                 itemCount={queue.length}
                 overscanCount={5}
@@ -156,7 +162,7 @@ function App() {
                 )}
               </FixedSizeList>
             ) : (
-              "Nothing queued"
+              'Nothing queued'
             )}
           </Box>
         </Grid>

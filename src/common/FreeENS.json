@@ -99,24 +99,12 @@
     "absolutePath": "src/FreeENS.sol",
     "id": 841,
     "exportedSymbols": {
-      "ENS": [
-        103
-      ],
-      "FreeENS": [
-        840
-      ],
-      "Namehash": [
-        683
-      ],
-      "Resolver": [
-        350
-      ],
-      "Strings": [
-        608
-      ],
-      "sha3HexAddress": [
-        363
-      ]
+      "ENS": [103],
+      "FreeENS": [840],
+      "Namehash": [683],
+      "Resolver": [350],
+      "Strings": [608],
+      "sha3HexAddress": [363]
     },
     "nodeType": "SourceUnit",
     "src": "0:2003:1",
@@ -126,22 +114,14 @@
         "nodeType": "PragmaDirective",
         "src": "0:24:1",
         "nodes": [],
-        "literals": [
-          "solidity",
-          ">=",
-          "0.7",
-          ".0"
-        ]
+        "literals": ["solidity", ">=", "0.7", ".0"]
       },
       {
         "id": 686,
         "nodeType": "PragmaDirective",
         "src": "25:33:1",
         "nodes": [],
-        "literals": [
-          "experimental",
-          "ABIEncoderV2"
-        ]
+        "literals": ["experimental", "ABIEncoderV2"]
       },
       {
         "id": 687,
@@ -183,9 +163,7 @@
               "pathNode": {
                 "id": 688,
                 "name": "ENS",
-                "nameLocations": [
-                  "104:3:1"
-                ],
+                "nameLocations": ["104:3:1"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 103,
                 "src": "104:3:1"
@@ -308,9 +286,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    707
-                  ],
+                  "assignments": [707],
                   "declarations": [
                     {
                       "constant": false,
@@ -444,9 +420,7 @@
                     "src": "527:943:1",
                     "statements": [
                       {
-                        "assignments": [
-                          727
-                        ],
+                        "assignments": [727],
                         "declarations": [
                           {
                             "constant": false,
@@ -660,9 +634,7 @@
                         "src": "541:91:1"
                       },
                       {
-                        "assignments": [
-                          741
-                        ],
+                        "assignments": [741],
                         "declarations": [
                           {
                             "constant": false,
@@ -863,9 +835,7 @@
                           "src": "741:719:1",
                           "statements": [
                             {
-                              "assignments": [
-                                755
-                              ],
+                              "assignments": [755],
                               "declarations": [
                                 {
                                   "constant": false,
@@ -888,9 +858,7 @@
                                     "pathNode": {
                                       "id": 753,
                                       "name": "Resolver",
-                                      "nameLocations": [
-                                        "759:8:1"
-                                      ],
+                                      "nameLocations": ["759:8:1"],
                                       "nodeType": "IdentifierPath",
                                       "referencedDeclaration": 350,
                                       "src": "759:8:1"
@@ -959,9 +927,7 @@
                               "src": "759:45:1"
                             },
                             {
-                              "assignments": [
-                                761
-                              ],
+                              "assignments": [761],
                               "declarations": [
                                 {
                                   "constant": false,
@@ -1184,9 +1150,7 @@
                               }
                             },
                             {
-                              "assignments": [
-                                778
-                              ],
+                              "assignments": [778],
                               "declarations": [
                                 {
                                   "constant": false,
@@ -1286,9 +1250,7 @@
                               "src": "975:42:1"
                             },
                             {
-                              "assignments": [
-                                785
-                              ],
+                              "assignments": [785],
                               "declarations": [
                                 {
                                   "constant": false,
@@ -1489,9 +1451,7 @@
                                 "src": "1152:294:1",
                                 "statements": [
                                   {
-                                    "assignments": [
-                                      799
-                                    ],
+                                    "assignments": [799],
                                     "declarations": [
                                       {
                                         "constant": false,
@@ -1514,9 +1474,7 @@
                                           "pathNode": {
                                             "id": 797,
                                             "name": "Resolver",
-                                            "nameLocations": [
-                                              "1174:8:1"
-                                            ],
+                                            "nameLocations": ["1174:8:1"],
                                             "nodeType": "IdentifierPath",
                                             "referencedDeclaration": 350,
                                             "src": "1174:8:1"
@@ -1585,9 +1543,7 @@
                                     "src": "1174:59:1"
                                   },
                                   {
-                                    "assignments": [
-                                      805
-                                    ],
+                                    "assignments": [805],
                                     "declarations": [
                                       {
                                         "constant": false,
@@ -1901,9 +1857,7 @@
                   },
                   "id": 829,
                   "initializationExpression": {
-                    "assignments": [
-                      716
-                    ],
+                    "assignments": [716],
                     "declarations": [
                       {
                         "constant": false,
@@ -1989,9 +1943,7 @@
                   "src": "480:990:1"
                 },
                 {
-                  "assignments": [
-                    831
-                  ],
+                  "assignments": [831],
                   "declarations": [
                     {
                       "constant": false,
@@ -2266,9 +2218,7 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "linearizedBaseContracts": [
-          840
-        ],
+        "linearizedBaseContracts": [840],
         "name": "FreeENS",
         "nameLocation": "90:7:1",
         "scope": 841,

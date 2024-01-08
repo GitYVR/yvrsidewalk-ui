@@ -1,5 +1,5 @@
-import { Grid, Typography } from "@mui/material";
-import ResponsiveAppBar from "../components/ResponsiveAppBar";
+import { Grid, Typography } from '@mui/material';
+import ResponsiveAppBar from '../components/ResponsiveAppBar';
 
 function AboutPage() {
   return (

@@ -6,13 +6,13 @@ import {
   ListItemButton,
   ListItemText,
   Typography,
-} from "@mui/material";
-import { useCallback, useEffect, useState } from "react";
-import { RECIPIENT_ADDRESS } from "../common/constants";
-import ResponsiveAppBar from "../components/ResponsiveAppBar";
-import { FixedSizeList } from "react-window";
-import { ethers } from "ethers";
-import { getENSNames, prettyAddress } from "../common/utils";
+} from '@mui/material';
+import { useCallback, useEffect, useState } from 'react';
+import { RECIPIENT_ADDRESS } from '../common/constants';
+import ResponsiveAppBar from '../components/ResponsiveAppBar';
+import { FixedSizeList } from 'react-window';
+import { ethers } from 'ethers';
+import { getENSNames, prettyAddress } from '../common/utils';
 
 type PolygonscanTx = {
   blockHash: string;
@@ -28,7 +28,7 @@ function HistoryPage() {
     [key: string]: string;
   }>(null);
   const [historicalTxs, setHistoricalTxs] = useState<null | PolygonscanTx[]>(
-    null
+    null,
   );
 
   const getENS = useCallback(async () => {
@@ -39,7 +39,7 @@ function HistoryPage() {
 
   const getHistoricalTx = useCallback(async () => {
     const resp = await fetch(
-      `https://api.polygonscan.com/api?module=account&action=txlist&address=${RECIPIENT_ADDRESS}&startblock=39079318&endblock=99999999&page=1&offset=50&sort=desc&apikey=V19AV5Z8XEPZCD237SK6JXGG2CB9ZB6VRR`
+      `https://api.polygonscan.com/api?module=account&action=txlist&address=${RECIPIENT_ADDRESS}&startblock=39079318&endblock=99999999&page=1&offset=50&sort=desc&apikey=V19AV5Z8XEPZCD237SK6JXGG2CB9ZB6VRR`,
     ).then((x) => x.json());
     const txs = resp.result;
     const txsNormalized = txs.map((x: PolygonscanTx) => {
@@ -66,19 +66,19 @@ function HistoryPage() {
         <Grid item md={6} xs={10}>
           <Typography variant="h3">History</Typography>
           <Typography variant="subtitle1">Last 50 messages</Typography>
-          <div style={{ marginTop: "25px" }}></div>
+          <div style={{ marginTop: '25px' }}></div>
 
           {historicalTxs !== null ? (
             <FixedSizeList
               height={500}
-              width={"100%"}
+              width={'100%'}
               itemSize={50}
               itemCount={historicalTxs.length}
               overscanCount={5}
             >
               {({ index, style }) => {
                 const curTx = historicalTxs[index];
-                let maybeStr = "[ERROR DECODING]";
+                let maybeStr = '[ERROR DECODING]';
                 try {
                   maybeStr = ethers.utils
                     .toUtf8String(historicalTxs[index].input)
@@ -88,7 +88,7 @@ function HistoryPage() {
                 if (ensNamesKV) {
                   const curEnsName =
                     ensNamesKV[ethers.utils.getAddress(displayName)];
-                  if (curEnsName !== undefined && curEnsName !== "") {
+                  if (curEnsName !== undefined && curEnsName !== '') {
                     displayName = curEnsName;
                   }
                 }
@@ -104,11 +104,11 @@ function HistoryPage() {
                       <Link
                         href={`https://polygonscan.com/tx/${curTx.hash}`}
                         color="inherit"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: 'none' }}
                       >
                         <ListItemText
                           primary={`${index + 1}. [${prettyAddress(
-                            displayName
+                            displayName,
                           )}]: ${maybeStr}`}
                         />
                       </Link>
