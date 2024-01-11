@@ -20,6 +20,7 @@ import { parseUnits } from '@ethersproject/units';
 import { ethers } from 'ethers';
 import { TwitchPlayer } from 'react-twitch-embed';
 import { RECIPIENT_ADDRESS } from './common/constants';
+import environment from './environment';
 
 function App() {
   const { data: signer } = useSigner();
@@ -32,13 +33,11 @@ function App() {
   const [paying, setPaying] = useState(false);
 
   const retrieveQueue = useCallback(async () => {
-    // const resp = await fetch("https://api-sidewalk.dctrl.wtf/queue", {
-    const resp = await fetch(
-      'https://d132-198-217-119-118.ngrok-free.app/queue',
-      {
-        method: 'GET',
-      },
-    ).then((x) => x.json());
+    const url = new URL(environment.REACT_APP_BACKEND_BASE_URL);
+    url.pathname = '/queue';
+    const resp = await fetch(url, {
+      method: 'GET',
+    }).then((x) => x.json());
     setQueue(resp.queue);
   }, []);
 
