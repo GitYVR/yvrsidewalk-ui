@@ -106,25 +106,46 @@ function App() {
     }
   }, [changeSidewalkText, currency, setOpen, signer]);
 
+  const { data: priceString } = useSWR(getPriceUrl(currency), {
+    refreshInterval: 10_000,
+  });
+
   const donationAmount = useMemo(() => {
-    if (currency == null) {
-      return;
-    }
     switch (currency) {
       case Currency.MATIC:
+      case Currency.USDC:
         return 1;
+      case Currency.BONK:
+      case Currency.SOL: {
+        const price = parseFloat(priceString);
+        if (Number.isNaN(price)) {
+          return;
+        } else {
+          return 1 / price; // Target donation value is 1 USDC
+        }
+      }
       default:
         currency satisfies never;
     }
-  }, [currency]);
+  }, [currency, priceString]);
 
   const donationDisplayAmount = useMemo(() => {
-    if (currency == null || donationAmount == null) {
+    if (donationAmount == null) {
       return <LinearProgress variant="indeterminate" sx={{ width: 100 }} />;
     } else {
       switch (currency) {
         case Currency.MATIC:
           return `${donationAmount} MATIC`;
+        case Currency.USDC:
+          return `${donationAmount} USDC`;
+        case Currency.BONK:
+        case Currency.SOL: {
+          const formattedAmount = Intl.NumberFormat(undefined, {
+            maximumFractionDigits: currency === Currency.SOL ? 5 : 2,
+            minimumFractionDigits: 2,
+          }).format(donationAmount);
+          return `~${formattedAmount} ${currency.toUpperCase()}`;
+        }
         default:
           currency satisfies never;
       }

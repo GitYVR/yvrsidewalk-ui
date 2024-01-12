@@ -2,7 +2,10 @@ import { useMemo } from 'react';
 import useSWR from 'swr';
 
 export const enum Currency {
+  BONK = 'bonk',
   MATIC = 'matic',
+  SOL = 'sol',
+  USDC = 'usdc',
 }
 
 export function useCurrency() {

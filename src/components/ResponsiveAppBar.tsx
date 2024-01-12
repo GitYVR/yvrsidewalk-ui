@@ -16,9 +16,35 @@ import { ConnectKitButton } from 'connectkit';
 import { Link } from 'react-router-dom';
 import { FormControl, InputLabel, Select } from '@mui/material';
 import { Currency, useCurrency } from '../common/currency';
+import BonkImage from './token-icons/bonk.png';
 import { ReactComponent as MaticIcon } from './token-icons/matic.svg';
+import { ReactComponent as SOLIcon } from './token-icons/sol.svg';
+import { ReactComponent as USDCIcon } from './token-icons/usdc.svg';
 
 const pages = ['History', 'About'];
+
+const TOKENS = {
+  [Currency.BONK]: {
+    label: 'Bonk',
+    icon: <img alt="Bonk" height={20} src={BonkImage} width={20} />,
+    network: 'Solana',
+  },
+  [Currency.MATIC]: {
+    label: 'Matic',
+    icon: <MaticIcon height={20} width={20} />,
+    network: 'Polygon',
+  },
+  [Currency.SOL]: {
+    label: 'SOL',
+    icon: <SOLIcon height={20} width={20} />,
+    network: 'Solana',
+  },
+  [Currency.USDC]: {
+    label: 'USDC',
+    icon: <USDCIcon height={20} width={20} />,
+    network: 'Solana',
+  },
+};
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -151,13 +177,22 @@ function ResponsiveAppBar() {
                 onChange={function (e) {
                   setCurrency(e.target.value as Currency);
                 }}
+                renderValue={(currency) => (
+                  <Box gap={1} display="flex" alignItems="center">
+                    {TOKENS[currency].icon} {TOKENS[currency].label}
+                  </Box>
+                )}
                 value={currency}
               >
-                <MenuItem value={Currency.MATIC}>
-                  <Box gap={1} display="flex" alignItems="center">
-                    <MaticIcon height={20} width={20} /> Matic (Polygon)
-                  </Box>
-                </MenuItem>
+                {Object.entries(TOKENS).map(
+                  ([currency, { icon, label, network }]) => (
+                    <MenuItem value={currency} key={currency}>
+                      <Box gap={1} display="flex" alignItems="center">
+                        {icon} {label} ({network})
+                      </Box>
+                    </MenuItem>
+                  ),
+                )}
               </Select>
             </FormControl>{' '}
             <Tooltip title="Web3 Acccount">
