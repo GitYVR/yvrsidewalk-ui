@@ -18,6 +18,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import CacheProvider from './components/CacheProvider';
 
 const client = createClient(
   getDefaultClient({
@@ -43,22 +44,24 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider theme={darkTheme}>
-        <SnackbarProvider>
-          <WagmiConfig client={client}>
-            <ConnectKitProvider theme="auto">
-              <CssBaseline />
-              <Routes>
-                <Route path="/" element={<App />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/history" element={<HistoryPage />} />
-              </Routes>
-            </ConnectKitProvider>
-          </WagmiConfig>
-        </SnackbarProvider>
-      </ThemeProvider>
-    </BrowserRouter>
+    <CacheProvider>
+      <BrowserRouter>
+        <ThemeProvider theme={darkTheme}>
+          <SnackbarProvider>
+            <WagmiConfig client={client}>
+              <ConnectKitProvider theme="auto">
+                <CssBaseline />
+                <Routes>
+                  <Route path="/" element={<App />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/history" element={<HistoryPage />} />
+                </Routes>
+              </ConnectKitProvider>
+            </WagmiConfig>
+          </SnackbarProvider>
+        </ThemeProvider>
+      </BrowserRouter>
+    </CacheProvider>
   </React.StrictMode>,
 );
 

@@ -12,7 +12,7 @@ import {
 import { useSnackbar } from 'notistack';
 import { useSigner } from 'wagmi';
 // import ReactPlayer from "react-player";
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import ResponsiveAppBar from './components/ResponsiveAppBar';
 import { FixedSizeList } from 'react-window';
 import { useModal } from 'connectkit';
@@ -21,32 +21,28 @@ import { ethers } from 'ethers';
 import { TwitchPlayer } from 'react-twitch-embed';
 import { RECIPIENT_ADDRESS } from './common/constants';
 import environment from './environment';
+import useSWR from 'swr';
+
+const QUEUE_URL = (() => {
+  const url = new URL(environment.REACT_APP_BACKEND_BASE_URL);
+  url.pathname = '/queue';
+  return url;
+})();
 
 function App() {
   const { data: signer } = useSigner();
   const { setOpen } = useModal();
   const { enqueueSnackbar } = useSnackbar();
 
-  const [queueInit, setQueueInit] = useState(false);
-  const [queue, setQueue] = useState([]);
   const [sidewalkText, setSidewalkText] = useState('');
   const [paying, setPaying] = useState(false);
 
-  const retrieveQueue = useCallback(async () => {
-    const url = new URL(environment.REACT_APP_BACKEND_BASE_URL);
-    url.pathname = '/queue';
-    const resp = await fetch(url, {
-      method: 'GET',
-    }).then((x) => x.json());
-    setQueue(resp.queue);
-  }, []);
-
-  useEffect(() => {
-    if (queueInit) return;
-    retrieveQueue();
-    setInterval(() => retrieveQueue(), 30 * 1000);
-    setQueueInit(true);
-  }, [retrieveQueue, queueInit]);
+  const {
+    data: { queue },
+  } = useSWR(QUEUE_URL, {
+    fallbackData: { queue: [] },
+    refreshInterval: 30_000,
+  });
 
   const changeSidewalkText = useCallback(async () => {
     if (sidewalkText.length === 0) {
