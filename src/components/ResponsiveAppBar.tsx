@@ -14,11 +14,15 @@ import ElderlyIcon from '@mui/icons-material/Elderly';
 
 import { ConnectKitButton } from 'connectkit';
 import { Link } from 'react-router-dom';
+import { FormControl, InputLabel, Select } from '@mui/material';
+import { Currency, useCurrency } from '../common/currency';
+import { ReactComponent as MaticIcon } from './token-icons/matic.svg';
 
 const pages = ['History', 'About'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const { currency, setCurrency } = useCurrency();
 
   const handleOpenNavMenu = (event: any) => {
     setAnchorElNav(event.currentTarget);
@@ -130,7 +134,32 @@ function ResponsiveAppBar() {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          <Box
+            sx={{
+              alignItems: 'center',
+              display: 'flex',
+              flexDirection: 'row',
+              flexGrow: 0,
+              gap: 2,
+            }}
+          >
+            <FormControl size="small">
+              <InputLabel id="currency-select-label">Pay with</InputLabel>
+              <Select
+                label="Choose a token"
+                labelId="currency-select-label"
+                onChange={function (e) {
+                  setCurrency(e.target.value as Currency);
+                }}
+                value={currency}
+              >
+                <MenuItem value={Currency.MATIC}>
+                  <Box gap={1} display="flex" alignItems="center">
+                    <MaticIcon height={20} width={20} /> Matic (Polygon)
+                  </Box>
+                </MenuItem>
+              </Select>
+            </FormControl>{' '}
             <Tooltip title="Web3 Acccount">
               <ConnectKitButton />
             </Tooltip>
